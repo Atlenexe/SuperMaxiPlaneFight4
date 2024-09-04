@@ -1,9 +1,8 @@
 import './style.css'
-import { FAttachedCamera, FComponentEmpty, FRectangle, FScene } from '@fibbojs/2d'
+import { FFixedCamera, FScene } from '@fibbojs/2d'
 import { fDebug } from '@fibbojs/devtools'
-import { FKeyboard } from '@fibbojs/event'
-import { loadLevel } from './level'
-import Character from './classes/Character'
+import Player from './classes/entities/Player'
+import Enemy from './classes/entities/Enemy'
 
 (async () => {
   const scene = new FScene()
@@ -13,38 +12,23 @@ import Character from './classes/Character'
   if (import.meta.env.DEV)
     fDebug(scene)
 
-  // Create a death zone
-  const deathZone = new FComponentEmpty(scene, {
-    position: { x: 0, y: -5 },
-    scale: { x: 20, y: 0.1 },
-  })
-  deathZone.initCollider()
-  scene.addComponent(deathZone)
-
-  // Load level
-  loadLevel(scene)
-
   /**
    * Create character
    */
-  const character = new Character(scene)
-  character.onCollisionWith(FRectangle, () => {
-    console.log('Sprite collided with a square!')
-  })
-  character.onCollisionWith(deathZone, () => {
-    character.setPosition({ x: 0, y: 5 })
-    console.log('Sprite collided with the death zone!')
-  })
-  scene.addComponent(character)
+  const player = new Player(scene)
 
-  // Create keyboard
-  const keyboard = new FKeyboard(scene)
-  keyboard.onKeyDown('p', () => {
-    character.setPosition({ x: 0, y: 5 })
+  const enemy = new Enemy(scene, { position: { x: 10, y: 0 } })
+  enemy.initSensor()
+  scene.addComponent(enemy)
+
+  player.onCollisionWith(enemy, () => {
+    console.log('CONTACT')
   })
+
+  scene.addComponent(player)
 
   // Attach a camera to the character
-  scene.camera = new FAttachedCamera(scene, {
-    target: character,
+  scene.camera = new FFixedCamera(scene, {
+    position: { x: 0, y: 0 }
   })
 })()
