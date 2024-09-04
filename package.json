@@ -1,0 +1,34 @@
+{
+  "name": "starter-2d",
+  "type": "module",
+  "version": "0.0.1",
+  "private": true,
+  "author": "John Doe <john.doe@fibbo.js>",
+  "homepage": "https://johndoe.github.io/starter-2d",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/johndoe/starter-2d.git"
+  },
+  "bugs": "https://github.com/johndoe/starter-2d/issues",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview"
+  },
+  "devDependencies": {
+    "@fibbojs/2d": "0.0.4",
+    "@fibbojs/core": "0.0.4",
+    "@fibbojs/devtools": "^0.0.4",
+    "@fibbojs/event": "0.0.4",
+    "typescript": "^5.2.2",
+    "vite": "^5.2.0",
+    "vite-plugin-top-level-await": "^1.4.4",
+    "vite-plugin-wasm": "^3.3.0",
+    "vue": "^3.5.0"
+  },
+  "dependencies": {
+    "@dimforge/rapier2d": "^0.14.0",
+    "pixi-viewport": "^5.0.3",
+    "pixi.js": "^8.3.4"
+  }
+}
