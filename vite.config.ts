@@ -7,7 +7,7 @@ export default defineConfig({
     wasm(),
     topLevelAwait(),
   ],
-  base: '/starter-2d',
+  base: '/SuperMaxiPlaneFight4/starter-2d',
   build: {
     rollupOptions: {
       // Solution found here: https://github.com/dimforge/rapier.js/issues/278
